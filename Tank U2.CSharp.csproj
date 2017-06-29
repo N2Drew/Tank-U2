@@ -83,7 +83,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\PlayerOneTankController.cs" />
+    <Compile Include="Assets\Scripts\PlayerOne\PlayerOneBulletController.cs" />
+    <Compile Include="Assets\Scripts\PlayerOne\PlayerOneHealthController.cs" />
+    <Compile Include="Assets\Scripts\PlayerOne\PlayerOneTankController.cs" />
+    <Compile Include="Assets\Scripts\PlayerTwo\PlayerTwoBulletController.cs" />
+    <Compile Include="Assets\Scripts\PlayerTwo\PlayerTwoHealthController.cs" />
+    <Compile Include="Assets\Scripts\PlayerTwo\PlayerTwoTankController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

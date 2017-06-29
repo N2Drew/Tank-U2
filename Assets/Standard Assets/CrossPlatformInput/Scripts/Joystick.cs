@@ -25,9 +25,10 @@ namespace UnityStandardAssets.CrossPlatformInput
 		CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis; // Reference to the joystick in the cross platform input
 		CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis; // Reference to the joystick in the cross platform input
 
-        public GameObject tankSprite;
+        public String SpriteName;
+        public GameObject tankObject;
 
-		void OnEnable()
+        void OnEnable()
 		{
 			CreateVirtualAxes();
 		}
@@ -35,7 +36,7 @@ namespace UnityStandardAssets.CrossPlatformInput
         void Start()
         {
             m_StartPos = transform.position;
-            tankSprite = GameObject.Find("PlayerOneSprite");
+            tankObject = GameObject.Find(SpriteName);
         }
 
 		void UpdateVirtualAxes(Vector3 value)
@@ -95,7 +96,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			UpdateVirtualAxes(transform.position);
 
             // Turn the tank according to the virtual stick
-            tankSprite.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(newPos.x, newPos.y) * Mathf.Rad2Deg)*-1;
+            tankObject.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(newPos.x, newPos.y) * Mathf.Rad2Deg)*-1;
         }
 
 

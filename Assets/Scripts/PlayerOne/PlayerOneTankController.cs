@@ -9,9 +9,10 @@ public class PlayerOneTankController : MonoBehaviour {
     Animator tankAnimator;
 
     public float moveSpeed = 5;
+    public GameObject playerOneBullet;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         tankBody = this.GetComponent<Rigidbody2D>();
         tankAnimator = GameObject.Find("PlayerOneSprite").GetComponent<Animator>();
 	}
@@ -20,17 +21,18 @@ public class PlayerOneTankController : MonoBehaviour {
 	void FixedUpdate () {
         Vector2 moveVector = new Vector2(CrossPlatformInputManager.GetAxisRaw("PlayerOneHorizontal"), 
             CrossPlatformInputManager.GetAxisRaw("PlayerOneVertical"));
-        bool isFiring = CrossPlatformInputManager.GetButton("PlayerOneFire");
 
-        tankBody.velocity = moveVector*moveSpeed;
-        Debug.Log(tankBody.velocity);
-        if(!tankBody.velocity.Equals(new Vector2(0,0)))
-        {
-            tankAnimator.SetFloat("Speed", 1);
-        } else
-        {
-            tankAnimator.SetFloat("Speed", 0);
+        if(CrossPlatformInputManager.GetButtonDown("PlayerOneFire")) {
+            Instantiate(playerOneBullet, new Vector3(transform.position.x, transform.position.y, transform.position.z+0.1f), transform.rotation);
         }
 
-	}
+        tankBody.velocity = moveVector*moveSpeed;
+        if(!tankBody.velocity.Equals(new Vector2(0,0)))
+        {
+            tankAnimator.SetBool("isMoving", true);
+        } else
+        {
+            tankAnimator.SetBool("isMoving", false);
+        }
+    }
 }
